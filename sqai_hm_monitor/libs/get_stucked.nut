@@ -31,6 +31,10 @@ class chk_stucked_cmd extends monitoring_base_cmd {
   }
   
   function _is_stucked_line(line) {
+    # 旅客と郵便を運んでいない路線であれば、無視する
+    if(line.get_goods_catg_index().filter(@(c) c<=2).len == 0) {
+      return false
+    }
     local wr = warning_ratio
     local cnv_to_check = filter(line.get_convoy_list(), (@(c) !c.is_in_depot()))
     local num_stucked = filter(cnv_to_check, (@(c) c.is_waiting() && !_is_in_depot(c))).len()
