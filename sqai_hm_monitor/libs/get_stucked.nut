@@ -32,7 +32,7 @@ class chk_stucked_cmd extends monitoring_base_cmd {
   
   function _is_stucked_line(line) {
     # 旅客と郵便を運んでいない路線であれば、無視する
-    if(line.get_goods_catg_index().filter(@(c) c<=2).len == 0) {
+    if(filter(line.get_goods_catg_index(), (@(c) c<=2)).len == 0) {
       return false
     }
     local wr = warning_ratio
