@@ -28,7 +28,7 @@ async def on_message(message):
     if message.author.bot or message.channel != channel or content[0]!='?' or len(content)<2:
         return
     
-    if content == 'IP' || content == 'ip':
+    if content == '?IP' || content == '?ip':
         # 適当にググって出てきたサービスを使ってるだけなので、サービス終了してたらよしなに切り替えてください
         with request.urlopen('https://globalip.me') as req:
             html = req.read().decode()
